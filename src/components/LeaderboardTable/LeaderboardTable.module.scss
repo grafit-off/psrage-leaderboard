@@ -16,6 +16,7 @@
 /* Add comfortable padding to body cells */
 .table tbody td {
   padding: var(--spacing-md) var(--spacing-lg);
+  text-align: center;
 }
 
 .th,
