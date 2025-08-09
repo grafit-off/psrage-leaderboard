@@ -2,15 +2,17 @@
 
 .container {
   @include glassmorphism;
+  width: 100%;
   border-radius: var(--border-radius-lg);
-  overflow: hidden;
   box-shadow: var(--shadow-medium);
+  overflow-x: auto;
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.9rem;
+  min-width: 1000px;
 }
 
 /* Add comfortable padding to body cells */
@@ -24,6 +26,7 @@
   padding: var(--spacing-md);
   text-align: left;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
 }
 
 .th {

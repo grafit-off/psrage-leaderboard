@@ -1,9 +1,9 @@
 @import '../../styles/mixins.scss';
 
 .dashboard {
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: var(--spacing-xl);
+  padding: var(--spacing-md);
 }
 
 .statsCards {
@@ -11,6 +11,25 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--spacing-lg);
   margin-bottom: var(--spacing-xxl);
+
+  @media (max-width: 1000px) {
+    grid-template-rows: repeat(2, 1fr);
+
+    &>div:nth-child(3) {
+      grid-row: 2 / span 2;
+      grid-column: 1 / span 2;
+    }
+  }
+
+  @media (max-width: 700px) {
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
+
+    &>div:nth-child(3) {
+      grid-row: unset;
+      grid-column: unset;
+    }
+  }
 }
 
 .sectionTitle {
@@ -20,5 +39,3 @@
   margin-bottom: var(--spacing-xl);
   color: var(--text-primary);
 }
-
-

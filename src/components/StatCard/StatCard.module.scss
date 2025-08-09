@@ -39,6 +39,10 @@
 .value {
   font-size: 1.8rem;
   font-weight: 700;
+
+  @media (max-width: 1170px) {
+    font-size: 1.5rem;
+  }
 }
 
 .subtitle {
@@ -49,5 +53,3 @@
   color: var(--text-muted);
   text-align: center;
 }
-
-

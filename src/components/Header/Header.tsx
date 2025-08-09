@@ -18,8 +18,8 @@ const Header: React.FC = () => {
       <div className={styles.headerContent}>
         <h1 className={styles.appTitle}>{t('app.title')}</h1>
         <div className={styles.languageSelector}>
-          <label htmlFor="language-select">{t('app.language')}:</label>
-          <div style={{ minWidth: 180 }}>
+          <label className={styles.languageSelectorLabel} htmlFor="language-select">{t('app.language')}:</label>
+          <div style={{ minWidth: 140 }}>
             <Select
               inputId="language-select"
               value={selectedOption}

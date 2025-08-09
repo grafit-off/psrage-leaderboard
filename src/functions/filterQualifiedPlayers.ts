@@ -5,5 +5,3 @@ const filterQualifiedPlayers = (players: Player[]): Player[] => {
 };
 
 export default filterQualifiedPlayers;
-
-
