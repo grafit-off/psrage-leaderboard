@@ -20,7 +20,7 @@ export const useLanguage = () => {
 };
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>('uk');
 
   const t = (key: string): string => {
     const keys = key.split('.');
