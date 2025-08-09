@@ -1,0 +1,25 @@
+{
+  "app": {
+    "title": "PSRAGE Leaderboard",
+    "language": "Language"
+  },
+  "stats": {
+    "clutchMaster": "Clutch Master",
+    "utilityDamage": "Utility Damage King",
+    "mostMatches": "Most Matches",
+    "nickname": "Nickname",
+    "averageKDRatio": "Avg K/D Ratio",
+    "averageKills": "Avg Kills",
+    "adr": "ADR",
+    "winRate": "Win Rate %",
+    "averageHeadshots": "Avg Headshots %",
+    "matches": "Matches",
+    "totalMatches": "Total Matches",
+    "totalUtilityDamage": "Total Utility Damage",
+    "oneVoneWinRate": "1v1 Win Rate",
+    "oneVtwoWinRate": "1v2 Win Rate",
+    "customCombatRating": "Rating 2.1"
+  },
+  "loading": "Loading...",
+  "error": "Error loading data"
+}

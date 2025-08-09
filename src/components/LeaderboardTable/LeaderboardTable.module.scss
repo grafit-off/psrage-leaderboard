@@ -1,0 +1,103 @@
+@import '../../styles/mixins.scss';
+
+.container {
+  @include glassmorphism;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-medium);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+/* Add comfortable padding to body cells */
+.table tbody td {
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.th,
+.td {
+  padding: var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.th {
+  background: rgba(255, 255, 255, 0.05);
+  font-weight: 600;
+  color: var(--text-secondary);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-index-sticky);
+  text-align: center;
+}
+
+.sortableHeader {
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-normal);
+}
+
+.sortableHeader:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.row {
+  transition: all var(--transition-normal);
+}
+
+.row:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Distinct styles for top 3 */
+.top1 {
+  background: rgba(255, 215, 0, 0.08); /* gold */
+  border-left: 3px solid #ffd700;
+}
+
+.top1:hover {
+  background: rgba(255, 215, 0, 0.14);
+}
+
+.top2 {
+  background: rgba(192, 192, 192, 0.08); /* silver */
+  border-left: 3px solid #c0c0c0;
+}
+
+.top2:hover {
+  background: rgba(192, 192, 192, 0.14);
+}
+
+.top3 {
+  background: rgba(205, 127, 50, 0.08); /* bronze */
+  border-left: 3px solid #cd7f32;
+}
+
+.top3:hover {
+  background: rgba(205, 127, 50, 0.14);
+}
+
+.sortIcon {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.sortableHeader:hover .sortIcon {
+  opacity: 1;
+}
+
+.activeSort .sortIcon {
+  opacity: 1;
+}
+
+.playerLink {
+  @include link-base;
+  font-weight: 600;
+}
+
+

@@ -1,0 +1,25 @@
+{
+  "app": {
+    "title": "PSRAGE Таблиця лідерів",
+    "language": "Мова"
+  },
+  "stats": {
+    "clutchMaster": "Майстер клатчів",
+    "utilityDamage": "Король утиліт",
+    "mostMatches": "Найбільше матчів",
+    "nickname": "Нікнейм",
+    "averageKDRatio": "Середнє K/D",
+    "averageKills": "Середні вбивства",
+    "adr": "ADR",
+    "winRate": "Відсоток перемог %",
+    "averageHeadshots": "Середні хедшоти %",
+    "matches": "Матчі",
+    "totalMatches": "Всього матчів",
+    "totalUtilityDamage": "Загальна шкода утиліт",
+    "oneVoneWinRate": "Перемоги 1v1",
+    "oneVtwoWinRate": "Перемоги 1v2",
+    "customCombatRating": "Rating 2.1"
+  },
+  "loading": "Завантаження...",
+  "error": "Помилка завантаження даних"
+}

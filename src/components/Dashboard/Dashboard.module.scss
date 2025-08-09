@@ -1,0 +1,24 @@
+@import '../../styles/mixins.scss';
+
+.dashboard {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+}
+
+.statsCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xxl);
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  color: var(--text-primary);
+}
+
+

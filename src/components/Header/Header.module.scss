@@ -1,0 +1,40 @@
+@import '../../styles/mixins.scss';
+
+.header {
+  background: var(--gradient-dark);
+  padding: var(--spacing-sm) 0;
+  box-shadow: var(--shadow-medium);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-index-sticky);
+}
+
+.headerContent {
+  @include flex-between;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.appTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.languageSelector {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+
+  label {
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+}
+
+

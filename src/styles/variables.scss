@@ -1,0 +1,55 @@
+:root {
+  // Color Variables
+  --primary-color: #4ecdc4;
+  --primary-hover: #00d4ff;
+  --background-dark: #0a0a0a;
+  --background-light: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #888888;
+  --error-color: #ff6b6b;
+  --success-color: #51cf66;
+
+  // Gradient Variables
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-dark: linear-gradient(135deg, #0a0a0a 0%, #0e0e0e 50%, #111111 100%);
+
+  // Spacing Variables
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+
+  // Border Radius Variables
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+
+  // Shadow Variables
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+  // Transition Variables
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  // Breakpoint Variables
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1200px;
+
+  // Z-index Variables
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1020;
+  --z-index-fixed: 1030;
+  --z-index-modal: 1040;
+  --z-index-popover: 1050;
+  --z-index-tooltip: 1060;
+}
