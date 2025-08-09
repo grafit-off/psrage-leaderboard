@@ -73,30 +73,6 @@ The application will open at `http://localhost:3000`
 npm run build
 ```
 
-## Project Structure
-
-```
-src/
-├── components/          # React components
-│   ├── Dashboard.tsx   # Main dashboard component
-│   ├── Header.tsx      # Header with language switcher
-│   ├── LeaderboardTable.tsx # Sortable leaderboard table
-│   └── StatCard.tsx    # Reusable stat card component
-├── context/            # React contexts
-│   ├── LanguageContext.tsx # Language management
-│   └── LeaderboardContext.tsx # Data management
-├── services/           # API services
-│   └── faceitApi.ts   # Faceit API integration
-├── translations/       # Language files
-│   ├── en.json        # English translations
-│   └── uk.json        # Ukrainian translations
-├── types/             # TypeScript type definitions
-│   └── faceit.ts      # Faceit API types
-├── utils/             # Utility functions
-│   └── formatters.ts  # Data formatting utilities
-└── App.tsx            # Main application component
-```
-
 ## API Configuration
 
 The application uses the Faceit API with the following configuration:
