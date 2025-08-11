@@ -1,4 +1,3 @@
-// Flexbox Mixins
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -22,7 +21,6 @@
   justify-content: center;
 }
 
-// Glassmorphism Mixin
 @mixin glassmorphism {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
@@ -30,7 +28,6 @@
   box-shadow: var(--shadow-medium);
 }
 
-// Button Mixins
 @mixin button-base {
   padding: var(--spacing-sm) var(--spacing-md);
   border: none;
@@ -66,7 +63,6 @@
   }
 }
 
-// Link Mixins
 @mixin link-base {
   color: var(--primary-color);
   text-decoration: none;
@@ -78,7 +74,6 @@
   }
 }
 
-// Responsive Mixins
 @mixin mobile {
   @media (max-width: var(--breakpoint-sm)) {
     @content;
@@ -97,7 +92,6 @@
   }
 }
 
-// Animation Mixins
 @mixin fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
@@ -110,7 +104,6 @@
   animation: pulse 2s infinite;
 }
 
-// Typography Mixins
 @mixin heading-large {
   font-size: 2.5rem;
   font-weight: 700;
@@ -138,7 +131,6 @@
   color: var(--text-secondary);
 }
 
-// Card Mixins
 @mixin card-base {
   @include glassmorphism;
   border-radius: var(--border-radius-lg);
@@ -151,7 +143,6 @@
   }
 }
 
-// Table Mixins
 @mixin table-base {
   width: 100%;
   border-collapse: collapse;

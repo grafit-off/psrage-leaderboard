@@ -16,7 +16,14 @@ const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
-        <h1 className={styles.appTitle}>{t('app.title')}</h1>
+        <h1 className={styles.appTitle}>
+          <a
+            href='https://www.faceit.com/en/club/f70da885-8b43-4ff5-a986-a97ce35e9c81/queue/3b814eda-51a7-497b-8efd-18d039e8db49/chat'
+            target="_blank"
+          >
+            {t('app.title')}
+          </a>
+        </h1>
         <div className={styles.languageSelector}>
           <label className={styles.languageSelectorLabel} htmlFor="language-select">{t('app.language')}:</label>
           <div style={{ minWidth: 140 }}>

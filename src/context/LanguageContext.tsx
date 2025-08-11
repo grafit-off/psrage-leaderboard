@@ -30,7 +30,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       if (value && typeof value === 'object' && k in value) {
         value = value[k];
       } else {
-        return key; // Return the key if translation not found
+        return key;
       }
     }
     

@@ -34,6 +34,9 @@
   --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.15);
   --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.2);
 
+  // Border Variables
+  --boder-medium: 3px solid rgba(255, 255, 255, 0.1);
+
   // Transition Variables
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
@@ -46,10 +49,5 @@
   --breakpoint-xl: 1200px;
 
   // Z-index Variables
-  --z-index-dropdown: 1000;
   --z-index-sticky: 1020;
-  --z-index-fixed: 1030;
-  --z-index-modal: 1040;
-  --z-index-popover: 1050;
-  --z-index-tooltip: 1060;
 }
