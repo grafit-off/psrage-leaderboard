@@ -1,33 +1,15 @@
 @import '../../styles/mixins.scss';
 
 .header {
-  background: var(--gradient-dark);
-  padding: var(--spacing-sm) 0;
-  box-shadow: var(--shadow-medium);
   position: sticky;
   top: 0;
   z-index: var(--z-index-sticky);
-}
-
-.headerContent {
+  
   @include flex-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-md);
-}
-
-.appTitle {
-  font-size: 2rem;
-  font-weight: 700;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0;
-
-  @media (max-width: 900px) {
-    font-size: 1rem;
-  }
+  
+  padding: var(--spacing-sm) ;
+  background: var(--gradient-dark);
+  box-shadow: var(--shadow-medium);
 }
 
 .languageSelector {
@@ -47,4 +29,16 @@
   }
 }
 
+.appTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--spacing-md);
 
+  @media (max-width: 900px) {
+    font-size: 1rem;
+  }
+}

@@ -1,4 +1,4 @@
-import { Player } from '../models/Player';
+import { Player } from '../models/player/Player';
 import { SortDirection, SortField } from '../models/Sorting';
 
 const comparePlayersForField = (

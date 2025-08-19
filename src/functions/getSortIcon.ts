@@ -1,4 +1,4 @@
-import { SortDirection, SortField } from '../models/Sorting';
+import { SortDirection } from '../models/Sorting';
 
 const getSortIcon = (
   direction: SortDirection
@@ -7,5 +7,3 @@ const getSortIcon = (
 };
 
 export default getSortIcon;
-
-

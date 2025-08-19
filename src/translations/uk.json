@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "PSRAGE Таблиця лідерів",
+    "title": "PSRAGE Hub",
     "language": "Мова"
   },
   "stats": {
@@ -19,6 +19,11 @@
     "oneVoneWinRate": "Перемоги 1v1",
     "oneVtwoWinRate": "Перемоги 1v2",
     "customCombatRating": "Rating 2.1"
+  },
+  "match": {
+    "ongoingMatches": "Поточні матчі",
+    "endedMatches": "Завершені матчі",
+    "cancelled": "Скасовано"
   },
   "loading": "Завантаження...",
   "error": "Помилка завантаження даних"

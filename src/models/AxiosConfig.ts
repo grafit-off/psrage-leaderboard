@@ -1,0 +1,1 @@
+export type AxiosConfig = Axios.AxiosXHRConfig<{ headers: { Authorization: string } }>;

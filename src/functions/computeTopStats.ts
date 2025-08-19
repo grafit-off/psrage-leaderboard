@@ -1,4 +1,4 @@
-import { Player } from '../models/Player';
+import { Player } from '../models/player/Player';
 
 export interface TopStatsResult {
   clutchMaster: Player | null;

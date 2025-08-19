@@ -1,25 +1,28 @@
-import React, { useState, useMemo } from 'react';
-import { Player } from '../../models/Player';
-import { SortField, SortDirection } from '../../models/Sorting';
-import formatPercentage from '../../functions/formatPercentage';
-import formatKDRatio from '../../functions/formatKDRatio';
-import formatADR from '../../functions/formatADR';
+import React, { useMemo, useState } from 'react';
+import Skeleton from '../../components/Skeleton/Skeleton';
 import { useLanguage } from '../../context/LanguageContext';
-import styles from './LeaderboardTable.module.scss';
-import filterQualifiedPlayers from '../../functions/filterQualifiedPlayers';
-import sortPlayers from '../../functions/sortPlayers';
+import { useLeaderboard } from '../../context/LeaderboardContext';
 import computeNextSort from '../../functions/computeNextSort';
-import getSortIconUtil from '../../functions/getSortIcon';
+import filterQualifiedPlayers from '../../functions/filterQualifiedPlayers';
+import formatADR from '../../functions/formatADR';
 import formatInteger from '../../functions/formatInteger';
+import formatKDRatio from '../../functions/formatKDRatio';
+import formatPercentage from '../../functions/formatPercentage';
+import getSortIconUtil from '../../functions/getSortIcon';
+import sortPlayers from '../../functions/sortPlayers';
+import { SortDirection, SortField } from '../../models/Sorting';
+import styles from './LeaderboardTable.module.scss';
+import { createNumberArray } from '../../functions/createNumberArray';
 
-interface LeaderboardTableProps {
-  players: Player[];
-}
+const SKELETONS = createNumberArray(7);
 
-const LeaderboardTable: React.FC<LeaderboardTableProps> = ({ players }) => {
+const LeaderboardTable: React.FC = () => {
+  const { state } = useLeaderboard();
+
   const { t } = useLanguage();
   const [sortField, setSortField] = useState<SortField>('customCombatRating');
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
+  const players = useMemo(() => state.players, [state])
 
   const filteredPlayers = useMemo(() => filterQualifiedPlayers(players), [players]);
 
@@ -65,30 +68,47 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({ players }) => {
           </tr>
         </thead>
         <tbody>
-          {sortedPlayers.map((player, index) => (
-            <tr
-              key={player.player_id}
-              className={`${styles.row} ${index === 0 ? styles.top1 : index === 1 ? styles.top2 : index === 2 ? styles.top3 : ''}`}
-            >
-              <td className={styles.playerNickname}>
-                <a 
-                  href={`https://www.faceit.com/en/players/${player.nickname}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.playerLink}
-                >
-                  {player.nickname}
-                </a>
-              </td>
-              <td>{player.stats['Custom Combat Rating'].toFixed(2)}</td>
-              <td>{formatKDRatio(player.stats['Average K/D Ratio'])}</td>
-              <td>{player.stats['Average Kills'].toFixed(2)}</td>
-              <td>{formatADR(player.stats.ADR)}</td>
-              <td>{formatPercentage(player.stats['Win Rate %'])}</td>
-              <td>{formatPercentage(player.stats['Average Headshots %'])}</td>
-              <td>{formatInteger(player.stats['Total Matches'])}</td>
-            </tr>
-          ))}
+
+          {state.loading
+            ? SKELETONS.map((player, index) => (
+              <tr
+                key={player}
+                className={`${styles.row} ${index === 0 ? styles.top1 : index === 1 ? styles.top2 : index === 2 ? styles.top3 : ''}`}
+              >
+                <td className={styles.playerNickname}> <Skeleton lines={1} /> </td>
+                <td><Skeleton lines={1} /></td>
+                <td><Skeleton lines={1} /></td>
+                <td><Skeleton lines={1} /></td>
+                <td><Skeleton lines={1} /></td>
+                <td><Skeleton lines={1} /></td>
+                <td><Skeleton lines={1} /></td>
+                <td><Skeleton lines={1} /></td>
+              </tr>
+            ))
+            : sortedPlayers.map((player, index) => (
+              <tr
+                key={player.player_id}
+                className={`${styles.row} ${index === 0 ? styles.top1 : index === 1 ? styles.top2 : index === 2 ? styles.top3 : ''}`}
+              >
+                <td className={styles.playerNickname}>
+                  <a
+                    href={`https://www.faceit.com/en/players/${player.nickname}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.playerLink}
+                  >
+                    {player.nickname}
+                  </a>
+                </td>
+                <td>{player.stats['Custom Combat Rating'].toFixed(2)}</td>
+                <td>{formatKDRatio(player.stats['Average K/D Ratio'])}</td>
+                <td>{player.stats['Average Kills'].toFixed(2)}</td>
+                <td>{formatADR(player.stats.ADR)}</td>
+                <td>{formatPercentage(player.stats['Win Rate %'])}</td>
+                <td>{formatPercentage(player.stats['Average Headshots %'])}</td>
+                <td>{formatInteger(player.stats['Total Matches'])}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
@@ -96,5 +116,3 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({ players }) => {
 };
 
 export default LeaderboardTable;
-
-

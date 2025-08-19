@@ -1,10 +1,14 @@
-import React, { createContext, useContext, useReducer, useEffect } from 'react';
-import { Player } from '../models/Player';
+import React, { createContext, ReactNode, useContext, useEffect, useReducer } from 'react';
+import { LeaderboardContextType,  } from '../models/Context';
 import { LeaderboardData } from '../models/LeaderboardData';
-import { LeaderboardContextType, LeaderboardProviderProps } from '../models/Context';
-import { fetchLeaderboardData } from '../services/faceitApi';
+import { Player } from '../models/player/Player';
+import { fetchHubLeaderboardData } from '../services/faceitApi/functions/fetchHubLeaderboardData';
 
 interface LeaderboardState extends LeaderboardData {}
+
+interface LeaderboardProviderProps {
+  children: ReactNode;
+}
 
 type LeaderboardAction =
   | { type: 'FETCH_START' }
@@ -46,7 +50,7 @@ export const LeaderboardProvider: React.FC<LeaderboardProviderProps> = ({ childr
   const fetchData = async () => {
     dispatch({ type: 'FETCH_START' });
     try {
-      const data = await fetchLeaderboardData();
+      const data = await fetchHubLeaderboardData();
       dispatch({ type: 'FETCH_SUCCESS', payload: data });
     } catch (error) {
       if (error instanceof Error) {

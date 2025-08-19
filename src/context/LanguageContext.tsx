@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, ReactNode, useContext, useState } from 'react';
 import { Language } from '../models/Language';
-import { LanguageContextType, LanguageProviderProps } from '../models/Context';
+import { LanguageContextType } from '../models/Context';
 import enTranslations from '../translations/en.json';
 import ukTranslations from '../translations/uk.json';
 
@@ -18,6 +18,10 @@ export const useLanguage = () => {
   }
   return context;
 };
+
+interface LanguageProviderProps {
+  children: ReactNode;
+}
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   const [language, setLanguage] = useState<Language>('uk');

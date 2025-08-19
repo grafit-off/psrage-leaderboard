@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "PSRAGE Leaderboard",
+    "title": "PSRAGE Hub",
     "language": "Language"
   },
   "stats": {
@@ -19,6 +19,11 @@
     "oneVoneWinRate": "1v1 Win Rate",
     "oneVtwoWinRate": "1v2 Win Rate",
     "customCombatRating": "Rating 2.1"
+  },
+  "match": {
+    "ongoingMatches": "Ongoing matches",
+    "endedMatches": "Finished matches",
+    "cancelled": "Cancelled"
   },
   "loading": "Loading...",
   "error": "Error loading data"

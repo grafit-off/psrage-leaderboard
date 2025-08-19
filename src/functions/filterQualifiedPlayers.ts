@@ -1,4 +1,4 @@
-import { Player } from '../models/Player';
+import { Player } from '../models/player/Player';
 
 const filterQualifiedPlayers = (players: Player[]): Player[] => {
   return players.filter(player => player.stats.Matches > 4);

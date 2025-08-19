@@ -8,15 +8,7 @@ export interface LanguageContextType {
   t: (key: string) => string;
 }
 
-export interface LanguageProviderProps {
-  children: ReactNode;
-}
-
 export interface LeaderboardContextType {
   state: LeaderboardData;
   fetchData: () => Promise<void>;
-}
-
-export interface LeaderboardProviderProps {
-  children: ReactNode;
 }

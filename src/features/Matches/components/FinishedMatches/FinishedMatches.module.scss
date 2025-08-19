@@ -1,0 +1,17 @@
+@import '../../../../styles/mixins.scss';
+
+.matches {
+    @include flex-column();
+    @include card-base;
+    width: 100%;
+}
+
+.heading {
+    margin-bottom: var(--spacing-md);
+}
+
+.match {
+    &:not(:last-child) {
+        margin-bottom: var(--spacing-md);
+    }
+}

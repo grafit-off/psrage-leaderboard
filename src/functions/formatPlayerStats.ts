@@ -1,4 +1,4 @@
-import { PlayerStatsResponse, PlayerStats } from '../models/PlayerStats';
+import { PlayerStatsResponse, PlayerStats } from '../models/player/PlayerStats';
 import { getPlayerCCR } from './getPlayerCCR';
 import { formatNumber } from './numberFormatting';
 
@@ -13,6 +13,7 @@ export const formatPlayerStats = (rawStats: PlayerStatsResponse): PlayerStats =>
   const avgQuad = formatNumber(rawStats["Average Quadro Kills"]);
   const avgPenta = formatNumber(rawStats["Average Penta Kills"]);
   const totalMatches =  formatNumber(rawStats["Matches"]);
+  const wins = rawStats["Wins"];
 
   return {
     "Entry Rate": formatNumber(rawStats["Entry Rate"]),
@@ -32,7 +33,7 @@ export const formatPlayerStats = (rawStats: PlayerStatsResponse): PlayerStats =>
     "Total Enemies Flashed": formatNumber(rawStats["Total Enemies Flashed"]),
     "1v1 Win Rate": formatNumber(rawStats["1v1 Win Rate"]),
     "Average Quadro Kills": avgQuad,
-    "Wins": rawStats["Wins"],
+    "Wins":wins,
     "Entry Success Rate": entrySuccess,
     "Total Headshots %": formatNumber(rawStats["Total Headshots %"]),
     "Enemies Flashed per Round": formatNumber(rawStats["Enemies Flashed per Round"]),
@@ -81,7 +82,8 @@ export const formatPlayerStats = (rawStats: PlayerStatsResponse): PlayerStats =>
       avgTriple,
       avgQuad,
       avgPenta,
-      totalMatches
+      totalMatches,
+
     ),
   };
 };
