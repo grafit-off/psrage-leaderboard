@@ -42,7 +42,7 @@ const OngoingMatches: React.FC = () => {
         <div className={styles.matches}>
             <h2 className={styles.heading}>{t('match.ongoingMatches')}</h2>
             {matches.map((match) => (
-                <div className={styles.match}>
+                <div className={styles.match} key={match.match_id}>
                     <MatchCard  match={match}/>
                 </div>
             ))}
