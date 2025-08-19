@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/psrage-leaderboard/static/css/main.4243b393.css",
+    "main.css": "/psrage-leaderboard/static/css/main.bb6548df.css",
     "main.js": "/psrage-leaderboard/static/js/main.57dfa826.js",
     "index.html": "/psrage-leaderboard/index.html",
-    "main.4243b393.css.map": "/psrage-leaderboard/static/css/main.4243b393.css.map",
+    "main.bb6548df.css.map": "/psrage-leaderboard/static/css/main.bb6548df.css.map",
     "main.57dfa826.js.map": "/psrage-leaderboard/static/js/main.57dfa826.js.map"
   },
   "entrypoints": [
-    "static/css/main.4243b393.css",
+    "static/css/main.bb6548df.css",
     "static/js/main.57dfa826.js"
   ]
 }
