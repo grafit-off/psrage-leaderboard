@@ -17,18 +17,26 @@
 
 .team {
     @include flex-column-center();
-    flex: 0 0 33%;
+    flex: 1 1 33%;
 }
 
 .teamName {
     font-weight: bold;
     font-size: 18px;
+
+    @media (max-width: 900px) {
+        font-size: 14px;
+    }
 }
 
 .score {
     @include flex-column-center();
-    flex: 0 0 33%;
+    flex: 0 1 auto;
     padding: var(--spacing-md);
+
+    @media (max-width: 900px) {
+        padding: var(--spacing-sm);
+    }
 }
 
 .scoreContainer {
@@ -39,10 +47,18 @@
 .scoreValue {
     font-weight: bold;
     font-size: 40px;
+
+    @media (max-width: 900px) {
+        font-size: 24px;
+    }
 }
 
 .vs {
     padding: var(--spacing-sm);
+
+    @media (max-width: 600px) {
+        padding: 2px;
+    }
 }
 
 .link {
