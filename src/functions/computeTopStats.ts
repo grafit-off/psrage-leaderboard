@@ -11,7 +11,7 @@ const computeTopStats = (players: Player[]): TopStatsResult => {
     return { clutchMaster: null, utilityDamage: null, mostMatches: null };
   }
 
-  const qualifiedPlayers = players.filter(player => player.stats.Matches > 5);
+  const qualifiedPlayers = players.filter(player => player.stats.Matches >= 1);
 
   if (qualifiedPlayers.length === 0) {
     return { clutchMaster: null, utilityDamage: null, mostMatches: null };

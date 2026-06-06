@@ -26,5 +26,6 @@
     "cancelled": "Cancelled"
   },
   "loading": "Loading...",
-  "error": "Error loading data"
+  "error": "Error loading data",
+  "noData": "No data"
 }

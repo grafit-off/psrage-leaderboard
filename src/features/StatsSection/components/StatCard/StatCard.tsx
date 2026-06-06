@@ -2,6 +2,7 @@ import React from 'react';
 import { Player } from '../../../../models/player/Player';
 import styles from './StatCard.module.scss';
 import Skeleton from '../../../../components/Skeleton/Skeleton';
+import { useLanguage } from '../../../../context/LanguageContext';
 
 interface StatCardProps {
   title: string;
@@ -13,7 +14,7 @@ interface StatCardProps {
 }
 
 const StatCard: React.FC<StatCardProps> = ({ title, player, value, subtitle, icon, loading }) => {
-  const isLoaded = player && !loading;
+  const { t } = useLanguage();
 
   return (
     <div className={styles.card}>
@@ -22,7 +23,17 @@ const StatCard: React.FC<StatCardProps> = ({ title, player, value, subtitle, ico
         {icon && <span className={styles.icon}>{icon}</span>}
       </div>
       <div className={styles.content}>
-        {isLoaded ? (
+        {loading ? (
+          <>
+            <div>
+              <a rel="noopener noreferrer" className={styles.playerLink}>
+                <span className={styles.playerNickname}><Skeleton lines={1} width='50%' /></span>
+              </a>
+            </div>
+            <div className={styles.value}><Skeleton lines={1} width='75%' /></div>
+            <div className={styles.subtitle}><Skeleton lines={1} width='60%' /></div>
+          </>
+        ) : player ? (
           <>
             <div>
               <a
@@ -37,18 +48,9 @@ const StatCard: React.FC<StatCardProps> = ({ title, player, value, subtitle, ico
             <div className={styles.value}>{value}</div>
             {subtitle && <div className={styles.subtitle}>{subtitle}</div>}
           </>
-        ) : <>
-          <div>
-            <a
-              rel="noopener noreferrer"
-              className={styles.playerLink}
-            >
-              <span className={styles.playerNickname}><Skeleton lines={1} width='50%' /></span>
-            </a>
-          </div>
-          <div className={styles.value}><Skeleton lines={1} width='75%' /></div>
-          <div className={styles.subtitle}><Skeleton lines={1} width='60%' /></div>
-        </>}
+        ) : (
+          <div className={styles.noData}>{t('noData')}</div>
+        )}
       </div>
     </div>
   );

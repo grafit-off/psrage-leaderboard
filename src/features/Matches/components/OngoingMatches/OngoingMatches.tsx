@@ -35,7 +35,12 @@ const OngoingMatches: React.FC = () => {
     }
 
     if(!matches.length) {
-        return <></>;
+        return (
+            <div className={styles.matches}>
+                <h2 className={styles.heading}>{t('match.ongoingMatches')}</h2>
+                <p>{t('noData')}</p>
+            </div>
+        );
     }
 
     return (

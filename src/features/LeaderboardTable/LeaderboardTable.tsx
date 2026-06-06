@@ -85,6 +85,8 @@ const LeaderboardTable: React.FC = () => {
                 <td><Skeleton lines={1} /></td>
               </tr>
             ))
+            : sortedPlayers.length === 0
+            ? <tr><td colSpan={8} className={styles.noData}>{t('noData')}</td></tr>
             : sortedPlayers.map((player, index) => (
               <tr
                 key={player.player_id}
