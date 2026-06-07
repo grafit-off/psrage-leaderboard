@@ -22,6 +22,11 @@
     border-right: 0;
     border-bottom: 1px solid var(--line);
   }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 .brand {
@@ -63,9 +68,15 @@
 
   @media (max-width: 920px) {
     flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
     margin: 0;
     flex: 1 1 auto;
     gap: 2px;
+  }
+
+  @media (max-width: 640px) {
+    flex-basis: 100%;
   }
 }
 
@@ -82,8 +93,13 @@
   font-weight: 500;
   color: var(--text-secondary);
   text-align: left;
+  white-space: nowrap;
   position: relative;
   transition: background var(--transition-fast), color var(--transition-fast);
+
+  @media (max-width: 920px) {
+    flex: 0 0 auto;
+  }
 
   &:hover {
     background: color-mix(in srgb, var(--acc) 5%, transparent);
@@ -135,6 +151,13 @@
     margin: 0 0 0 auto;
     flex-direction: row;
     align-items: center;
+  }
+
+  @media (max-width: 640px) {
+    margin: 0;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
   }
 }
 
