@@ -15,7 +15,7 @@
 
 .summary {
     display: grid;
-    grid-template-columns: 100px 1fr 140px 20px;
+    grid-template-columns: 100px minmax(0, 1fr) 140px 20px;
     align-items: center;
     gap: 14px;
     width: 100%;
@@ -50,6 +50,7 @@
 .teams {
     display: flex;
     align-items: center;
+    min-width: 0;
     gap: 8px;
     overflow: hidden;
 }
