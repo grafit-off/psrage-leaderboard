@@ -1,19 +1,40 @@
 :root {
-  // Color Variables
-  --primary-color: #4ecdc4;
-  --primary-hover: #00d4ff;
-  --background-dark: #0a0a0a;
-  --background-light: #1a1a1a;
-  --text-primary: #ffffff;
-  --text-secondary: #cccccc;
-  --text-muted: #888888;
-  --error-color: #ff6b6b;
-  --success-color: #51cf66;
+  // Color Variables — RAIL "Ice" theme
+  --acc: #38bdf8;
+  --acc-br: color-mix(in srgb, var(--acc), white 45%);
+  --acc-dim: color-mix(in srgb, var(--acc), black 42%);
+
+  --bg0: #07090d;
+  --bg1: #0c1016;
+  --panel-a: #131a24;
+  --panel-b: #0e131b;
+
+  --text-primary: #e7edf4;
+  --text-secondary: #aeb9c6;
+  --text-muted: #6e7888;
+
+  --win: #5fd38a;
+  --loss: #ff6b6b;
+
+  --line: color-mix(in srgb, var(--acc) 9%, transparent);
+  --line2: color-mix(in srgb, var(--acc) 18%, transparent);
+  --tint: color-mix(in srgb, var(--acc) 11%, transparent);
+  --tint-strong: color-mix(in srgb, var(--acc) 16%, transparent);
+  --text-on-accent: #04121c;
+
+  // Back-compat aliases used across existing components
+  --primary-color: var(--acc);
+  --primary-hover: var(--acc-br);
+  --background-dark: var(--bg0);
+  --background-light: var(--bg1);
+  --error-color: var(--loss);
+  --success-color: var(--win);
 
   // Gradient Variables
-  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --gradient-dark: linear-gradient(135deg, #0a0a0a 0%, #0e0e0e 50%, #111111 100%);
+  --gradient-primary: linear-gradient(135deg, var(--acc) 0%, var(--acc-br) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--acc-dim) 0%, var(--acc) 100%);
+  --gradient-dark: radial-gradient(120% 80% at 100% 0%, color-mix(in srgb, var(--acc) 7%, transparent), transparent 55%), var(--bg0);
+  --gradient-panel: linear-gradient(180deg, var(--panel-a), var(--panel-b));
 
   // Spacing Variables
   --spacing-xs: 0.25rem;
@@ -25,34 +46,40 @@
   --spacing-xxl: 3rem;
 
   // Border Radius Variables
-  --border-radius-sm: 4px;
-  --border-radius-md: 8px;
-  --border-radius-lg: 12px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 10px;
+  --border-radius-lg: 13px;
   --border-radius-xl: 16px;
+  --border-radius-pill: 999px;
   --border-radius-round: 50%;
 
   // Shadow Variables
-  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.15);
-  --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.18);
+  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.28);
+  --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --glow-acc: 0 0 0 2px color-mix(in srgb, var(--acc) 40%, transparent), 0 0 16px color-mix(in srgb, var(--acc) 35%, transparent);
 
   // Border Variables
   --boder-medium: 3px solid rgba(255, 255, 255, 0.1);
 
   // Transition Variables
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s ease;
+  --transition-fast: 0.18s ease;
+  --transition-normal: 0.25s ease;
   --transition-slow: 0.5s ease;
+  --transition-rotate: 0.8s cubic-bezier(.4, 0, .2, 1);
 
   // Breakpoint Variables
   --breakpoint-sm: 480px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1200px;
+  --breakpoint-shell: 920px;
 
   // Z-index Variables
   --z-index-sticky: 1020;
 
-  // Font-size
+  // Typography
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
   --font-size: 14px;
 }

@@ -1,12 +1,32 @@
 {
   "app": {
     "title": "PSRAGE Hub",
-    "language": "Мова"
+    "language": "Мова",
+    "hub": "ХАБ",
+    "sync": "Синхронізувати",
+    "synced": "Синхронізовано",
+    "live": "НАЖИВО",
+    "subtitle": "CS2 · FACEIT Hub · сортування за",
+    "faceitHub": "FACEIT · HUB 3B81"
+  },
+  "nav": {
+    "leaderboard": "Таблиця лідерів",
+    "matches": "Матчі",
+    "players": "Гравці",
+    "stats": "Статистика"
+  },
+  "leaderboard": {
+    "ranking": "Рейтинг",
+    "operatives": "гравців",
+    "live": "наживо",
+    "filterAll": "Усі",
+    "filterMin5": "5+ матчів"
   },
   "stats": {
     "clutchMaster": "Майстер клатчів",
     "utilityDamage": "Король утиліт",
     "mostMatches": "Найбільше матчів",
+    "rank": "#",
     "nickname": "Нікнейм",
     "averageKDRatio": "Середнє K/D",
     "averageKills": "Середні вбивства",
@@ -23,7 +43,38 @@
   "match": {
     "ongoingMatches": "Поточні матчі",
     "endedMatches": "Завершені матчі",
-    "cancelled": "Скасовано"
+    "cancelled": "Скасовано",
+    "live": "НАЖИВО",
+    "final": "ФІНАЛ",
+    "ago": "тому",
+    "hoursShort": "г",
+    "daysShort": "д"
+  },
+  "matchesView": {
+    "title": "Матчі",
+    "subtitle": "CS2 · FACEIT Hub · поточні та завершені",
+    "ongoing": "Поточні",
+    "finished": "Завершені",
+    "mapPick": "Вибір карти",
+    "score": "Рахунок",
+    "roster": "Склад",
+    "skillLevel": "Рів.",
+    "details": "Деталі",
+    "hide": "Сховати"
+  },
+  "playersView": {
+    "title": "Гравці",
+    "subtitle": "CS2 · FACEIT Hub · повний склад",
+    "rating": "Рейтинг"
+  },
+  "statsView": {
+    "title": "Статистика",
+    "subtitle": "CS2 · FACEIT Hub · найкращі показники",
+    "entryRate": "Entry Rate",
+    "mvps": "MVP",
+    "flashSuccess": "Успішність флешок",
+    "headshotsPct": "Хедшоти %",
+    "multiKills": "Мульти-вбивства"
   },
   "loading": "Завантаження...",
   "error": "Помилка завантаження даних",

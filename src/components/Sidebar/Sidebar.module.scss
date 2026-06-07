@@ -1,5 +1,215 @@
 @import '../../styles/mixins.scss';
 
 .sidebar {
-  padding: var(--spacing-md);
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 20px;
+  border-right: 1px solid var(--line);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 3%, transparent), transparent 26%), var(--bg1);
+
+  @media (max-width: 920px) {
+    position: static;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px 18px;
+    padding: 16px 20px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+.brand {
+  @media (max-width: 920px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1;
+
+  span {
+    color: var(--acc);
+  }
+}
+
+.hubId {
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  color: var(--text-muted);
+
+  @media (max-width: 920px) {
+    display: none;
+  }
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 36px;
+
+  @media (max-width: 920px) {
+    flex-direction: row;
+    margin: 0;
+    flex: 1 1 auto;
+    gap: 2px;
+  }
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border: 0;
+  border-radius: var(--border-radius-md);
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-align: left;
+  position: relative;
+  transition: background var(--transition-fast), color var(--transition-fast);
+
+  &:hover {
+    background: color-mix(in srgb, var(--acc) 5%, transparent);
+    color: var(--text-primary);
+  }
+}
+
+.navDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--text-muted);
+  flex: 0 0 auto;
+  transition: background var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.navButtonActive {
+  background: var(--tint);
+  color: #fff;
+
+  .navDot {
+    background: var(--acc);
+    box-shadow: 0 0 10px var(--acc);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    bottom: 9px;
+    width: 3px;
+    border-radius: 3px;
+    background: var(--acc);
+
+    @media (max-width: 920px) {
+      display: none;
+    }
+  }
+}
+
+.foot {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+
+  @media (max-width: 920px) {
+    margin: 0 0 0 auto;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.langToggle {
+  display: inline-flex;
+  border: 1px solid var(--line2);
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  width: fit-content;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.langButton {
+  padding: 7px 14px;
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.langButtonActive {
+  background: var(--acc);
+  color: var(--text-on-accent);
+  font-weight: 700;
+}
+
+.sync {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 9px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--acc-br);
+  background: color-mix(in srgb, var(--acc) 7%, transparent);
+  border: 1px solid var(--line2);
+  border-radius: var(--border-radius-md);
+  padding: 11px 14px;
+  transition: background var(--transition-fast);
+  max-width: 100%;
+
+  &:hover:not(:disabled) {
+    background: var(--tint);
+  }
+
+  &:disabled {
+    cursor: progress;
+  }
+}
+
+.syncIcon {
+  display: inline-block;
+  transition: transform var(--transition-rotate);
+}
+
+.syncSpinning .syncIcon {
+  transform: rotate(360deg);
+}
+
+.syncWhen {
+  flex-basis: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 500;
+
+  @media (max-width: 560px) {
+    display: none;
+  }
 }

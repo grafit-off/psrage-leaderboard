@@ -1,7 +1,6 @@
-@import '../../styles/mixins.scss';
-
 .matches {
-    @include flex-column-center();
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
     width: 100%;
-    gap: var(--spacing-md);
 }

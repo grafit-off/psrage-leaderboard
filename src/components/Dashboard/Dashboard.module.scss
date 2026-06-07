@@ -1,5 +1,8 @@
 @import '../../styles/mixins.scss';
 
 .dashboard {
-  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
 }

@@ -28,10 +28,41 @@
 }
 
 @mixin glassmorphism {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--gradient-panel);
+  border: 1px solid var(--line);
   box-shadow: var(--shadow-medium);
+}
+
+@mixin panel-hover-lift {
+  transition: transform var(--transition-normal), border-color var(--transition-normal);
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: var(--line2);
+  }
+}
+
+@mixin mono-label {
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+@mixin live-dot($size: 7px) {
+  display: inline-block;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background: var(--acc);
+  box-shadow: 0 0 9px var(--acc);
+  animation: rl-blink 1.4s steps(2) infinite;
+}
+
+@keyframes rl-blink {
+  50% {
+    opacity: 0.25;
+  }
 }
 
 @mixin button-base {
@@ -139,13 +170,19 @@
 
 @mixin card-base {
   @include glassmorphism;
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-lg);
-  transition: all var(--transition-normal);
-  
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-heavy);
+  position: relative;
+  border-radius: var(--border-radius-xl);
+  padding: 20px 22px;
+  overflow: hidden;
+  @include panel-hover-lift;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--acc), transparent 70%);
+    opacity: 0.6;
   }
 }
 
@@ -165,9 +202,9 @@
 }
 
 @mixin table-row-hover {
-  transition: all var(--transition-normal);
-  
+  transition: background var(--transition-fast);
+
   &:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: color-mix(in srgb, var(--acc) 4%, transparent);
   }
 }

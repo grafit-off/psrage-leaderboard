@@ -1,12 +1,32 @@
 {
   "app": {
     "title": "PSRAGE Hub",
-    "language": "Language"
+    "language": "Language",
+    "hub": "HUB",
+    "sync": "Sync data",
+    "synced": "Synced",
+    "live": "LIVE",
+    "subtitle": "CS2 · FACEIT Hub · sorted by",
+    "faceitHub": "FACEIT · HUB 3B81"
+  },
+  "nav": {
+    "leaderboard": "Leaderboard",
+    "matches": "Matches",
+    "players": "Players",
+    "stats": "Stats"
+  },
+  "leaderboard": {
+    "ranking": "Ranking",
+    "operatives": "operatives",
+    "live": "live",
+    "filterAll": "All",
+    "filterMin5": "5+ matches"
   },
   "stats": {
     "clutchMaster": "Clutch Master",
     "utilityDamage": "Utility Damage King",
     "mostMatches": "Most Matches",
+    "rank": "#",
     "nickname": "Nickname",
     "averageKDRatio": "Avg K/D Ratio",
     "averageKills": "Avg Kills",
@@ -23,7 +43,38 @@
   "match": {
     "ongoingMatches": "Ongoing matches",
     "endedMatches": "Finished matches",
-    "cancelled": "Cancelled"
+    "cancelled": "Cancelled",
+    "live": "LIVE",
+    "final": "FINAL",
+    "ago": "ago",
+    "hoursShort": "h",
+    "daysShort": "d"
+  },
+  "matchesView": {
+    "title": "Matches",
+    "subtitle": "CS2 · FACEIT Hub · ongoing & finished",
+    "ongoing": "Ongoing",
+    "finished": "Finished",
+    "mapPick": "Map pick",
+    "score": "Score",
+    "roster": "Roster",
+    "skillLevel": "Lvl",
+    "details": "Details",
+    "hide": "Hide"
+  },
+  "playersView": {
+    "title": "Players",
+    "subtitle": "CS2 · FACEIT Hub · full roster",
+    "rating": "Rating"
+  },
+  "statsView": {
+    "title": "Stats",
+    "subtitle": "CS2 · FACEIT Hub · top performers",
+    "entryRate": "Entry Rate",
+    "mvps": "MVPs",
+    "flashSuccess": "Flash Success",
+    "headshotsPct": "Headshots %",
+    "multiKills": "Multi-Kills"
   },
   "loading": "Loading...",
   "error": "Error loading data",

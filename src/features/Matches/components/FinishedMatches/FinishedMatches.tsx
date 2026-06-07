@@ -46,11 +46,11 @@ const FinishedMatches: React.FC = () => {
     return (
         <div className={styles.matches}>
             <h2 className={styles.heading}>{t('match.endedMatches')}</h2>
-            {matches.map((match) => (
-                <div className={styles.match} key={match.match_id}>
-                    <MatchCard  match={match} />
-                </div>
-            ))}
+            <div className={styles.grid}>
+                {matches.map((match) => (
+                    <MatchCard match={match} key={match.match_id} />
+                ))}
+            </div>
         </div>
     );
 };

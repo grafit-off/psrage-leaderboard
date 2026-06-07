@@ -2,118 +2,232 @@ import React, { useMemo, useState } from 'react';
 import Skeleton from '../../components/Skeleton/Skeleton';
 import { useLanguage } from '../../context/LanguageContext';
 import { useLeaderboard } from '../../context/LeaderboardContext';
+import { classNames } from '../../functions/classNames';
 import computeNextSort from '../../functions/computeNextSort';
+import { createNumberArray } from '../../functions/createNumberArray';
 import filterQualifiedPlayers from '../../functions/filterQualifiedPlayers';
 import formatADR from '../../functions/formatADR';
 import formatInteger from '../../functions/formatInteger';
 import formatKDRatio from '../../functions/formatKDRatio';
 import formatPercentage from '../../functions/formatPercentage';
-import getSortIconUtil from '../../functions/getSortIcon';
 import sortPlayers from '../../functions/sortPlayers';
+import { Player } from '../../models/player/Player';
 import { SortDirection, SortField } from '../../models/Sorting';
 import styles from './LeaderboardTable.module.scss';
-import { createNumberArray } from '../../functions/createNumberArray';
 
 const SKELETONS = createNumberArray(7);
 
-const LeaderboardTable: React.FC = () => {
+interface MatchesFilterOption {
+  minMatches: number;
+  labelKey: string;
+}
+
+const MATCHES_FILTER_OPTIONS: MatchesFilterOption[] = [
+  { minMatches: 1, labelKey: 'leaderboard.filterAll' },
+  { minMatches: 5, labelKey: 'leaderboard.filterMin5' },
+];
+
+interface Column {
+  field: SortField;
+  labelKey: string;
+  defaultDirection: SortDirection;
+  align: 'left' | 'right';
+  accent?: boolean;
+  render: (player: Player) => React.ReactNode;
+}
+
+const COLUMNS: Column[] = [
+  {
+    field: 'customCombatRating',
+    labelKey: 'stats.customCombatRating',
+    defaultDirection: 'desc',
+    align: 'right',
+    render: (player) => player.stats['Custom Combat Rating'].toFixed(2),
+  },
+  {
+    field: 'averageKDRatio',
+    labelKey: 'stats.averageKDRatio',
+    defaultDirection: 'desc',
+    align: 'right',
+    accent: true,
+    render: (player) => formatKDRatio(player.stats['Average K/D Ratio']),
+  },
+  {
+    field: 'averageKills',
+    labelKey: 'stats.averageKills',
+    defaultDirection: 'desc',
+    align: 'right',
+    render: (player) => player.stats['Average Kills'].toFixed(2),
+  },
+  {
+    field: 'adr',
+    labelKey: 'stats.adr',
+    defaultDirection: 'desc',
+    align: 'right',
+    render: (player) => formatADR(player.stats.ADR),
+  },
+  {
+    field: 'winRate',
+    labelKey: 'stats.winRate',
+    defaultDirection: 'desc',
+    align: 'right',
+    render: (player) => formatPercentage(player.stats['Win Rate %']),
+  },
+  {
+    field: 'averageHeadshots',
+    labelKey: 'stats.averageHeadshots',
+    defaultDirection: 'desc',
+    align: 'right',
+    render: (player) => formatPercentage(player.stats['Average Headshots %']),
+  },
+  {
+    field: 'totalMatches',
+    labelKey: 'stats.totalMatches',
+    defaultDirection: 'desc',
+    align: 'right',
+    render: (player) => formatInteger(player.stats['Total Matches']),
+  },
+];
+
+interface LeaderboardTableProps {
+  sortField: SortField;
+  sortDirection: SortDirection;
+  onSortChange: (field: SortField, direction: SortDirection) => void;
+}
+
+const LeaderboardTable: React.FC<LeaderboardTableProps> = ({ sortField, sortDirection, onSortChange }) => {
   const { state } = useLeaderboard();
-
   const { t } = useLanguage();
-  const [sortField, setSortField] = useState<SortField>('customCombatRating');
-  const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
-  const players = useMemo(() => state.players, [state])
+  const [minMatches, setMinMatches] = useState(MATCHES_FILTER_OPTIONS[0].minMatches);
 
-  const filteredPlayers = useMemo(() => filterQualifiedPlayers(players), [players]);
+  const players = useMemo(() => state.players, [state]);
+  const qualifiedPlayers = useMemo(() => filterQualifiedPlayers(players), [players]);
+  const filteredPlayers = useMemo(
+    () => qualifiedPlayers.filter((player) => player.stats.Matches >= minMatches),
+    [qualifiedPlayers, minMatches]
+  );
+  const sortedPlayers = useMemo(
+    () => sortPlayers(filteredPlayers, sortField, sortDirection),
+    [filteredPlayers, sortField, sortDirection]
+  );
 
-  const sortedPlayers = useMemo(() => sortPlayers(filteredPlayers, sortField, sortDirection), [filteredPlayers, sortField, sortDirection]);
-
-  const handleSort = (field: SortField) => {
-    const next = computeNextSort(sortField, sortDirection, field);
-    setSortField(next.sortField);
-    setSortDirection(next.sortDirection);
+  const handleSort = (field: SortField, defaultDirection: SortDirection = 'desc') => {
+    if (field === sortField) {
+      const next = computeNextSort(sortField, sortDirection, field);
+      onSortChange(next.sortField, next.sortDirection);
+    } else {
+      onSortChange(field, defaultDirection);
+    }
   };
 
-  const getSortIcon = (field: SortField) => getSortIconUtil(sortDirection);
+  const renderCaret = (field: SortField) => {
+    if (sortField !== field) return <span className={styles.caret}>▾</span>;
+    return <span className={styles.caret}>{sortDirection === 'asc' ? '▴' : '▾'}</span>;
+  };
+
+  const initials = (nickname: string) => nickname.slice(0, 2).toUpperCase();
 
   return (
-    <div className={styles.container}>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th onClick={() => handleSort('nickname')} className={`${styles.th} ${styles.sortableHeader} ${sortField === 'nickname' ? styles.activeSort : ''}`}>
-              {t('stats.nickname')}  <span className={styles.sortIcon}>{getSortIcon('nickname')}</span>
-            </th>
-            <th onClick={() => handleSort('customCombatRating')} className={`${styles.th} ${styles.sortableHeader} ${sortField === 'customCombatRating' ? styles.activeSort : ''}`}>
-              {t('stats.customCombatRating')}  <span className={styles.sortIcon}>{getSortIcon('customCombatRating')}</span>
-            </th>
-            <th onClick={() => handleSort('averageKDRatio')} className={`${styles.th} ${styles.sortableHeader} ${sortField === 'averageKDRatio' ? styles.activeSort : ''}`}>
-              {t('stats.averageKDRatio')}  <span className={styles.sortIcon}>{getSortIcon('averageKDRatio')}</span>
-            </th>
-            <th onClick={() => handleSort('averageKills')} className={`${styles.th} ${styles.sortableHeader} ${sortField === 'averageKills' ? styles.activeSort : ''}`}>
-              {t('stats.averageKills')}  <span className={styles.sortIcon}>{getSortIcon('averageKills')}</span>
-            </th>
-            <th onClick={() => handleSort('adr')} className={`${styles.th} ${styles.sortableHeader} ${sortField === 'adr' ? styles.activeSort : ''}`}>
-              {t('stats.adr')}  <span className={styles.sortIcon}>{getSortIcon('adr')}</span>
-            </th>
-            <th onClick={() => handleSort('winRate')} className={`${styles.th} ${styles.sortableHeader} ${sortField === 'winRate' ? styles.activeSort : ''}`}>
-              {t('stats.winRate')}  <span className={styles.sortIcon}>{getSortIcon('winRate')}</span>
-            </th>
-            <th onClick={() => handleSort('averageHeadshots')} className={`${styles.th} ${styles.sortableHeader} ${sortField === 'averageHeadshots' ? styles.activeSort : ''}`}>
-              {t('stats.averageHeadshots')}  <span className={styles.sortIcon}>{getSortIcon('averageHeadshots')}</span>
-            </th>
-            <th onClick={() => handleSort('totalMatches')} className={`${styles.th} ${styles.sortableHeader} ${sortField === 'totalMatches' ? styles.activeSort : ''}`}>
-              {t('stats.totalMatches')}  <span className={styles.sortIcon}>{getSortIcon('totalMatches')}</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-
-          {state.loading
-            ? SKELETONS.map((player, index) => (
-              <tr
-                key={player}
-                className={`${styles.row} ${index === 0 ? styles.top1 : index === 1 ? styles.top2 : index === 2 ? styles.top3 : ''}`}
+    <section className={styles.panel}>
+      <div className={styles.panelHead}>
+        <span className={styles.panelTitle}>{t('leaderboard.ranking')}</span>
+        <div className={styles.headRight}>
+          <div className={styles.filter} role="group">
+            {MATCHES_FILTER_OPTIONS.map((option) => (
+              <button
+                key={option.minMatches}
+                className={classNames(styles.filterButton, minMatches === option.minMatches && styles.filterButtonActive)}
+                onClick={() => setMinMatches(option.minMatches)}
+                aria-pressed={minMatches === option.minMatches}
               >
-                <td className={styles.playerNickname}> <Skeleton lines={1} /> </td>
-                <td><Skeleton lines={1} /></td>
-                <td><Skeleton lines={1} /></td>
-                <td><Skeleton lines={1} /></td>
-                <td><Skeleton lines={1} /></td>
-                <td><Skeleton lines={1} /></td>
-                <td><Skeleton lines={1} /></td>
-                <td><Skeleton lines={1} /></td>
-              </tr>
-            ))
-            : sortedPlayers.length === 0
-            ? <tr><td colSpan={8} className={styles.noData}>{t('noData')}</td></tr>
-            : sortedPlayers.map((player, index) => (
-              <tr
-                key={player.player_id}
-                className={`${styles.row} ${index === 0 ? styles.top1 : index === 1 ? styles.top2 : index === 2 ? styles.top3 : ''}`}
-              >
-                <td className={styles.playerNickname}>
-                  <a
-                    href={`https://www.faceit.com/en/players/${player.nickname}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.playerLink}
-                  >
-                    {player.nickname}
-                  </a>
-                </td>
-                <td>{player.stats['Custom Combat Rating'].toFixed(2)}</td>
-                <td>{formatKDRatio(player.stats['Average K/D Ratio'])}</td>
-                <td>{player.stats['Average Kills'].toFixed(2)}</td>
-                <td>{formatADR(player.stats.ADR)}</td>
-                <td>{formatPercentage(player.stats['Win Rate %'])}</td>
-                <td>{formatPercentage(player.stats['Average Headshots %'])}</td>
-                <td>{formatInteger(player.stats['Total Matches'])}</td>
-              </tr>
+                {t(option.labelKey)}
+              </button>
             ))}
-        </tbody>
-      </table>
-    </div>
+          </div>
+          <span className={styles.panelMeta}>
+            {sortedPlayers.length} {t('leaderboard.operatives')} · <b>{t('leaderboard.live')}</b>
+          </span>
+        </div>
+      </div>
+
+      <div className={styles.tableWrap}>
+        <div className={styles.table}>
+          <div className={styles.headerRow}>
+            <div>
+              <button
+                className={classNames(styles.headerButton, sortField === 'nickname' && styles.headerButtonActive)}
+                onClick={() => handleSort('nickname', 'asc')}
+              >
+                {t('stats.rank')}
+                {renderCaret('nickname')}
+              </button>
+            </div>
+            <div>
+              <button
+                className={classNames(styles.headerButton, sortField === 'nickname' && styles.headerButtonActive)}
+                onClick={() => handleSort('nickname', 'asc')}
+              >
+                {t('stats.nickname')}
+                {renderCaret('nickname')}
+              </button>
+            </div>
+            {COLUMNS.map((column) => (
+              <div className={styles.numCell} key={column.field}>
+                <button
+                  className={classNames(styles.headerButton, sortField === column.field && styles.headerButtonActive)}
+                  onClick={() => handleSort(column.field, column.defaultDirection)}
+                >
+                  {renderCaret(column.field)}
+                  {t(column.labelKey)}
+                </button>
+              </div>
+            ))}
+          </div>
+
+          {state.loading ? (
+            SKELETONS.map((skeleton) => (
+              <div className={styles.row} key={skeleton}>
+                <span className={styles.rank}><Skeleton lines={1} /></span>
+                <span className={styles.player}><Skeleton lines={1} /></span>
+                {COLUMNS.map((column) => (
+                  <span className={styles.numCell} key={column.field}><Skeleton lines={1} /></span>
+                ))}
+              </div>
+            ))
+          ) : sortedPlayers.length === 0 ? (
+            <div className={styles.noData}>{t('noData')}</div>
+          ) : (
+            sortedPlayers.map((player, index) => {
+              const rank = index + 1;
+              return (
+                <div className={classNames(styles.row, rank === 1 && styles.rowTop1)} key={player.player_id}>
+                  <span className={styles.rank}>{String(rank).padStart(2, '0')}</span>
+                  <span className={styles.player}>
+                    <span className={styles.avatar}>{initials(player.nickname)}</span>
+                    <a
+                      href={`https://www.faceit.com/en/players/${player.nickname}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.nickname}
+                    >
+                      {player.nickname}
+                    </a>
+                  </span>
+                  {COLUMNS.map((column) => (
+                    <span
+                      className={classNames(styles.numCell, styles.numValue, column.accent && styles.accentValue)}
+                      key={column.field}
+                    >
+                      {column.render(player)}
+                    </span>
+                  ))}
+                </div>
+              );
+            })
+          )}
+        </div>
+      </div>
+    </section>
   );
 };
 

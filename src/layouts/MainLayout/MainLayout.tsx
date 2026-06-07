@@ -1,20 +1,29 @@
-import React from 'react';
-import Header from '../../components/Header/Header';
-import Dashboard from '../../components/Dashboard/Dashboard';
+import React, { useState } from 'react';
 import Sidebar from '../../components/Sidebar/Sidebar';
+import Dashboard from '../../components/Dashboard/Dashboard';
+import MatchesView from '../../features/MatchesView/MatchesView';
+import PlayersView from '../../features/PlayersView/PlayersView';
+import StatsView from '../../features/StatsView/StatsView';
+import { View } from '../../models/View';
 import styles from './MainLayout.module.scss';
-import Matches from '../../features/Matches/Matches';
+
+const VIEW_COMPONENTS: Record<View, React.FC> = {
+    leaderboard: Dashboard,
+    matches: MatchesView,
+    players: PlayersView,
+    stats: StatsView,
+};
 
 const MainLayout: React.FC = () => {
+    const [active, setActive] = useState<View>('leaderboard');
+    const ActiveView = VIEW_COMPONENTS[active];
+
     return (
         <div className={styles.app}>
-            <Header />
-            <main className={styles.mainContent}>
-                <div className={styles.dashboard}>
-                    <Dashboard />
-                </div>
-                <div className={styles.sidebar}>
-                    <Sidebar children={<Matches />} />
+            <Sidebar active={active} onChangeActive={setActive} />
+            <main className={styles.main}>
+                <div className={styles.mainInner}>
+                    <ActiveView />
                 </div>
             </main>
         </div>
@@ -22,6 +31,3 @@ const MainLayout: React.FC = () => {
 };
 
 export default MainLayout;
-
-
-
