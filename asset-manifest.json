@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/psrage-leaderboard/static/css/main.a501066b.css",
-    "main.js": "/psrage-leaderboard/static/js/main.39148432.js",
+    "main.css": "/psrage-leaderboard/static/css/main.cd5931c3.css",
+    "main.js": "/psrage-leaderboard/static/js/main.e29fe026.js",
     "index.html": "/psrage-leaderboard/index.html",
-    "main.a501066b.css.map": "/psrage-leaderboard/static/css/main.a501066b.css.map",
-    "main.39148432.js.map": "/psrage-leaderboard/static/js/main.39148432.js.map"
+    "main.cd5931c3.css.map": "/psrage-leaderboard/static/css/main.cd5931c3.css.map",
+    "main.e29fe026.js.map": "/psrage-leaderboard/static/js/main.e29fe026.js.map"
   },
   "entrypoints": [
-    "static/css/main.a501066b.css",
-    "static/js/main.39148432.js"
+    "static/css/main.cd5931c3.css",
+    "static/js/main.e29fe026.js"
   ]
 }
