@@ -20,7 +20,13 @@ $cols: 54px minmax(150px, 2.2fr) repeat(7, minmax(64px, 1fr));
 .headRight {
   display: flex;
   align-items: center;
-  gap: 14px;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 
 .filter {
